@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>To-Do List</h1>
+            <p>Add your tasks and stay organized</p>
+        </header>
+        <form class="task-form" id="task-form">
+            <input 
+                type="text" 
+                class="task-input" 
+                id="task-input" 
+                placeholder="Add a new task..."
+                autocomplete="off"
+                required
+            >
+            <button type="submit" class="add-button">Add</button>
+        </form>
+        
+        <div class="tasks-container">
+            <ul class="task-list" id="task-list">
+                <!-- Tasks -->
+            </ul>
+            <div id="empty-message" class="empty-message">
+                Your list is empty. Add some tasks!
+            </div>
+        </div>
+        
+        <div class="stats">
+            <span id="tasks-count">0 tasks</span>
+            <div class="clear">
+                <button class="clear-completed" id="clear-completed">Clear completed</button>
+                <button class="clear-completed" id="clear-all">Clear all</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
