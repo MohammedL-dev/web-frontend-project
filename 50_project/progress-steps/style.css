@@ -32,11 +32,11 @@ body {
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    border: #e0e0e0 4px solid;    
+    border: #e0e0e0 3px solid;    
     display: flex;
     align-items: center;
     justify-content: center;
-
+    z-index: 1; 
 }
 
 .progress {
@@ -60,6 +60,17 @@ body {
     z-index: -1;
 }
 
+.prog {
+    background-color: #3498db;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
 .btn {
     background-color: #3498db;
     color: #fff;
@@ -73,6 +84,11 @@ body {
 }
 
 .active {
-    border: #3498db 4px solid;
-    transition: border 0.3s ease;    
+    border: #3498db 3px solid;
+    transition: border 0.3s ease 0.3s;    
+}
+
+.disable {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
 }

@@ -1,0 +1,47 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(90deg, #7d5fff, #7158e2);
+}
+
+.container {
+    display: flex;
+}
+
+.search {
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    border: none;
+    transition: width 0.7s ease;
+}
+
+input[type = text] {
+    border: 0;
+    outline: 0;
+    height: 50px;
+    transition: width 0.7s ease, padding 0.7s ease;
+}
+
+.close {
+    width: 0;
+    padding: 0;
+}
+
+.active {
+    width: 200px;
+    padding: 0 20px;
+}
