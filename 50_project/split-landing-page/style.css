@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --solo_color : #1c2f4a;
+    --frieren_color : #816e47;
+    --shadow : #0000007a;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+
+}
+
+.page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    background-position: center;
+    background-size: cover;
+    transition: all 1s ease-in-out;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+}
+
+.s {
+    background-image: url(https://images8.alphacoders.com/138/thumb-1920-1386891.jpg);
+}
+
+.f {
+    background-image: url(https://images3.alphacoders.com/135/thumb-1920-1354394.jpeg);
+}
+
+.s::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-color: var(--shadow);
+    width: 50%;
+    height: 100%;
+}
+
+.f::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 50%;
+    background-color: var(--shadow);
+    width: 50%;
+    height: 100%;
+}
+
+
+h1 {
+    font-size: 64px;
+    transform: translateY(-15px);
+    transition: all 0.3s ease;
+}
+
+.solo,
+.Frieren {
+    margin-top: 20px;
+    background: #ffffff00;
+    border-radius: 0px;
+    padding: 20px 45px;
+    display: inline-block;
+    font: normal bold 26px/1 "Open Sans", sans-serif;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.page.scale .solo,
+.page.scale .Frieren,
+.page.scale h1 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.solo {
+    color:#fff;
+    border: 4px solid #fff;
+}
+
+.solo:hover {
+    background: var(--solo_color);
+    border: 4px solid var(--solo_color);
+}
+
+.Frieren {
+    color:#fff;
+    border: 4px solid #fff;
+}
+
+.Frieren:hover {
+    background: var(--frieren_color);
+    border: 4px solid var(--frieren_color);
+}
+
+.scale {
+    width: 200%;
+}
+
+/* .s {
+    background-image: url(https://images8.alphacoders.com/138/thumb-1920-1386891.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.s::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+
+.f {
+    background-image: url(https://images3.alphacoders.com/135/thumb-1920-1354394.jpeg);
+    background-position: center;
+    background-size: cover;
+} */
+
+
+/* .page::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+*/
+
