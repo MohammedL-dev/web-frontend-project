@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #4682b4, #2a4e6c);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    padding: 20px 40px;
+    background-color: #2a4e6c;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    /* height: 100%; */
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.login {
+    background-color: #add8e6;
+    border-radius: 10px;
+    color: #2a4e6c;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.login:hover {
+    background: #b0e0e6;
+    transform: translateY(-3px);
+}
+
+.registe {
+    display: flex;
+    margin: 30px 0 16px;
+}
+
+.regi {
+    color: #4eb1de;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.regi:hover {
+    text-decoration: underline;
+}
+
+input[type=text],
+input[type=password] {
+    border: none;
+    border-bottom: 2px solid #fff;
+    background-color: #2a4e6c;
+    padding: 15px 0;
+    width: 300px;
+    outline: 0;
+    color: #fff;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 20px 0 30px;
+    text-align: center;
+}
+
+label {
+    position: absolute;
+    top: 25%;
+    left: 0;
+}
+
+.form-control {
+    position: relative;
+    margin: 20px 0 40px;
+}
+
+.form-control label span {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+    transform: translateY(-20px);
+    color: lightblue;
+}
+
+.form-control label span:nth-child(1) { transition-delay: 0.00s }
+.form-control label span:nth-child(2) { transition-delay: 0.05s }
+.form-control label span:nth-child(3) { transition-delay: 0.10s }
+.form-control label span:nth-child(4) { transition-delay: 0.15s }
+.form-control label span:nth-child(5) { transition-delay: 0.20s }
+.form-control label span:nth-child(6) { transition-delay: 0.25s }
+.form-control label span:nth-child(7) { transition-delay: 0.30s }
+.form-control label span:nth-child(8) { transition-delay: 0.35s }
+.form-control label span:nth-child(9) { transition-delay: 0.40s }
+.form-control label span:nth-child(10) { transition-delay: 0.45s }
+
+
