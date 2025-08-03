@@ -178,11 +178,6 @@ function showProgress(n, t){
     document.getElementById("progress").textContent = `Progress: [${progress}] ${i * 10}% \n${n}/${t}`;
 }
 
-cancel_btn.addEventListener("click" , () => {
-    shouldStop = true;
-    showLoading(false)
-});
-
 
 async function animeRate() {
     const num2 = document.getElementById("animes_num2").value;
@@ -239,6 +234,11 @@ async function animeRate() {
 
             
             for (const anime of animes) {
+                cancel_btn.addEventListener("click" , () => {
+                    shouldStop = true;
+                    showLoading(false)
+                });
+                if (shouldStop) break;
                 const title = anime.title;
                 const title_english = anime.title_english || "";
                 const episodes = anime.episodes;
@@ -246,6 +246,7 @@ async function animeRate() {
                 const rating = anime.rating;
                 const id = anime.mal_id;
                 const year = anime.year || 'N/A';
+                const status = anime.status
                 count_anime++;
                 let progressbar = (count_anime/num2) * 100;
                 //console.log(progressbar);
@@ -286,12 +287,12 @@ async function animeRate() {
 
                 const allEpisodesGood = b.length === 0 || !b.includes(0);
                 const scoreOk = (score !== null && (in_score === "" || score >= Number(in_score))) || filter === "upcoming";
-                const ep_numOK = (episodes !== null && (ep_num === "" || episodes <= Number(ep_num))) || filter === "upcoming";
+                const ep_numOK = (episodes !== null && (ep_num === "" || episodes <= Number(ep_num))) || filter === "upcoming" || status === "Currently Airing";
                 const genreOK = genre.length === 0 || anime.genres.some(g => genre.includes(g.name));
                 const typeOK = type === "" || anime.type === type;
                 const noRepetOK = repeatanime === "" || repeatanime !== title;
-                console.log(`${title} => score: ${scoreOk} (${score}), episodes: ${ep_numOK} (${episodes}), genres: ${genreOK}, type: ${typeOK} (${anime.type}), noRepeat: ${noRepetOK}, allEpisodesGood: ${allEpisodesGood}`);
-
+                //console.log(`${title} => score: ${scoreOk} (${score}), episodes: ${ep_numOK} (${episodes}), genres: ${genreOK}, type: ${typeOK} (${anime.type}), noRepeat: ${noRepetOK}, allEpisodesGood: ${allEpisodesGood}`);
+                console.log(`${title} => status: ${status}, episodes: ${ep_numOK} (${episodes})`)
                 if (allEpisodesGood && scoreOk && ep_numOK && genreOK && typeOK && noRepetOK) {
                     animes_found++
 
