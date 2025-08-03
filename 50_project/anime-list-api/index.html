@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Anime-list</title>
+</head>
+<body class="bg-[var(--color-primary)] caret-[var(--color-tertiary)]">
+    <nav class="flex bg-gradient-to-r from-[var(--color-primary-color)] to-[var(--color-primary)] text-[var(--color-secondary)] flex-wrap items-center justify-between px-6 py-5 mb-6 shadow-lg backdrop-blur-sm transition-all duration-300">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-[var(--color-tertiary)] to-[var(--color-tertiary-500)] 
+                        rounded-xl flex items-center justify-center shadow-md transform transition-transform duration-300 hover:scale-110">
+                <svg class="w-6 h-6 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1 class="text-[var(--color-tertiary)] text-2xl font-bold tracking-wide bg-gradient-to-r from-[var(--color-tertiary)] to-[var(--color-tertiary-500)]  bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
+                Anime List
+            </h1>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <a href="#" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-[var(--color-tertiary-500)] text-[var(--color-primary)] font-medium hover:bg-[var(--color-tertiary-800)] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <i class="fas fa-share-alt"></i>
+                <span class="font-semibold">Share</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="flex flex-col justify-self-center mx-auto max-w-6xl text-[var(--color-secondary)]">
+        <section class="flex flex-col items-center text-start py-24 px-4 bg-[var(--color-primary)] text-[var(--color-secondary)]">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-center tracking-tight">
+                <i class="fas fa-search mr-3"></i>Discover Your Next <br> Favorite <span class="text-[var(--color-tertiary)]">Anime</span>
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl w-xl">
+                Search, filter, and explore the best anime tailored to your taste — fast and easy.
+            </p>
+        </section>
+        
+        <div class="bg-[var(--color-primary-color)] rounded-lg shadow-sm p-4">
+            <p class="mt-8 mb-3"><i class="fas fa-filter mr-2"></i>Filter</p>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="num" type="number" id="animes_num2" value="20">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="rate" type="number" id="rate">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="score" type="number" id="score">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="number of episodes" type="number" id="ep_num">
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col flex-auto gap-2 ">
+                    <label><i class="fas fa-tv mr-2"></i>Type:</label>
+                    <select id="type" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="">Any Type</option>
+                        <option value="TV">TV</option>
+                        <option value="Movie">Movie</option>
+                        <option value="OVA">OVA</option>
+                        <option value="ONA">ONA</option>
+                        <option value="Special">Special</option>
+                        <option value="Music">Music</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col flex-auto gap-2">
+                    <label><i class="fas fa-sort mr-2"></i>Order by:</label>
+                    <select id="order_by" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="score">Score</option>
+                        <option value="popularity">Popularity</option>
+                        <option value="favorites">Favorites</option>
+                        <option value="rank">Rank</option>
+                        <option value="mal_id">Newest</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col flex-auto gap-2">
+                    <label><i class="fas fa-sort-amount-down mr-2"></i>Sort:</label>
+                    <select id="sort" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="desc">Descending</option>
+                        <option value="asc">Ascending</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col flex-auto gap-2">
+                    <label><i class="fas fa-funnel-dollar mr-2"></i>Filter:</label>
+                    <select id="filter" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="">None</option>
+                        <option value="airing">Airing</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="bypopularity">By Popularity</option>
+                        <option value="favorite">By Favorites</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="mb-3"><i class="fas fa-tags mr-2"></i>Genre</p>
+
+            <div class="flex flex-wrap gap-3 mb-8">
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-action" type="checkbox" name="genre" value="Action" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-action" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-fist-raised mr-2"></i>Action</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-adventure" type="checkbox" name="genre" value="Adventure" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-adventure" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-mountain mr-2"></i>Adventure</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-avant-garde" type="checkbox" name="genre" value="Avant Garde" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-avant-garde" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-palette mr-2"></i>Avant Garde</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-award-winning" type="checkbox" name="genre" value="Award Winning" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-award-winning" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-trophy mr-2"></i>Award Winning</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-comedy" type="checkbox" name="genre" value="Comedy" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-comedy" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-laugh mr-2"></i>Comedy</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-drama" type="checkbox" name="genre" value="Drama" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-drama" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-theater-masks mr-2"></i>Drama</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-fantasy" type="checkbox" name="genre" value="Fantasy" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-fantasy" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-magic mr-2"></i>Fantasy</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-horror" type="checkbox" name="genre" value="Horror" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-horror" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-ghost mr-2"></i>Horror</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-mystery" type="checkbox" name="genre" value="Mystery" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-mystery" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-search mr-2"></i>Mystery</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-romance" type="checkbox" name="genre" value="Romance" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-romance" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-heart mr-2"></i>Romance</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-sci-fi" type="checkbox" name="genre" value="Sci-Fi" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-sci-fi" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-rocket mr-2"></i>Sci-Fi</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-slice-of-life" type="checkbox" name="genre" value="Slice of Life" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-slice-of-life" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-home mr-2"></i>Slice of Life</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-sports" type="checkbox" name="genre" value="Sports" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-sports" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-football-ball mr-2"></i>Sports</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-supernatural" type="checkbox" name="genre" value="Supernatural" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-supernatural" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-eye mr-2"></i>Supernatural</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-suspense" type="checkbox" name="genre" value="Suspense" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-suspense" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-exclamation-triangle mr-2"></i>Suspense</label>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-between items-center md:justify-start">
+                <div class="">
+                    <div class="flex flex-wrap mb-4 mt-8">
+                        <button onclick="animeRate()" id="get_btn" class="text-[var(--color-primary)] bg-[var(--color-tertiary)] focus:ring-4 focus:ring-[var(--color-tertiary-500)] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
+                            <i class="fas fa-list mr-2"></i>GET List
+                        </button>
+                        <button onclick="downloadTxtFile()" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-[var(--color-tertiary)] rounded-lg group bg-[var(--color-tertiary)] group-hover:[var(--color-tertiary)] hover:text-[var(--color-primary)] focus:ring-4 focus:outline-none focus:ring-[var(--color-tertiary-500)]">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-[var(--color-primary)] rounded-md group-hover:bg-transparent">
+                                <i class="fas fa-download mr-2"></i>Export TXT
+                            </span>
+                        </button>
+                        <button onclick="darkClass()" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                            <i class="fas fa-moon mr-2"></i>dark
+                        </button>
+                    </div>
+                </div>
+                <button type="button" id="cancel_btn" class="mb-4 mt-8 text-[var(--color-text-2)] bg-[var(--color-bg)] border border-[var(--color-text-1)] focus:outline-none hover:bg-[var(--color-primary-500)] focus:ring-4 focus:ring-[var(--color-primary-color)] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition-colors duration-200 ease-in-out">
+                    <i class="fas fa-times mr-2"></i>cancel
+                </button>
+            </div>
+        </div>
+
+        <div id="loading"></div>
+        <div id="anime-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Anime-list</title>
+</head>
+<body class="bg-[var(--color-primary)]">
+    <nav class="flex bg-gradient-to-r from-[var(--color-primary-color)] to-[var(--color-primary)] text-[var(--color-secondary)] flex-wrap items-center justify-between px-6 py-5 mb-6 shadow-lg backdrop-blur-sm transition-all duration-300">
+    
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-[var(--color-tertiary)] to-[var(--color-tertiary-500)] 
+                        rounded-xl flex items-center justify-center shadow-md transform transition-transform duration-300 hover:scale-110">
+                <svg class="w-6 h-6 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1 class="text-[var(--color-tertiary)] text-2xl font-bold tracking-wide bg-gradient-to-r from-[var(--color-tertiary)] to-[var(--color-tertiary-500)]  bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
+                Anime List
+            </h1>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            
+
+            <a href="#" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-[var(--color-tertiary-500)] text-[var(--color-primary)] font-medium hover:bg-[var(--color-tertiary-800)] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                </svg>
+                <span class="font-semibold">Share</span>
+            </a>
+
+            
+        </div>
+    </nav>
+
+    <div class="flex flex-col justify-self-center mx-auto max-w-6xl text-[var(--color-secondary)]">
+        <section class="flex flex-col items-center text-start py-24 px-4 bg-[var(--color-primary)] text-[var(--color-secondary)]">
+            <h1 class="text-base/6 text-4xl md:text-5xl font-bold mb-4 text-center tracking-tight">Discover Your Next <br> Favorite <span class="text-[var(--color-tertiary)]">Anime</span></h1>
+            <p class="text-lg md:text-xl max-w-2xl w-xl">
+                Search, filter, and explore the best anime tailored to your taste — fast and easy.
+            </p>
+        </section>
+        
+        <div class="bg-[var(--color-primary-color)] rounded-lg shadow-sm p-4">
+            <p class="mt-8 mb-3">Filter</p>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="num" type="number" id="animes_num2" value="20">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="rate" type="number" id="rate">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="score" type="number" id="score">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="number of episodes" type="number" id="ep_num">
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col flex-auto gap-2 ">
+                    <label>Type:</label>
+                    <select id="type" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="">Any Type</option>
+                        <option value="TV">TV</option>
+                        <option value="Movie">Movie</option>
+                        <option value="OVA">OVA</option>
+                        <option value="ONA">ONA</option>
+                        <option value="Special">Special</option>
+                        <option value="Music">Music</option>
+                    </select>
+                </div>
+    
+                <div class="flex flex-col flex-auto gap-2">
+                    <label>Order by:</label>
+                    <select id="order_by" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="score">Score</option>
+                        <option value="popularity">Popularity</option>
+                        <option value="favorites">Favorites</option>
+                        <option value="rank">Rank</option>
+                        <option value="mal_id">Newest</option>
+                    </select>
+                </div>
+    
+                <div class="flex flex-col flex-auto gap-2">
+                    <label>Sort:</label>
+                    <select id="sort" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="desc">Descending</option>
+                        <option value="asc">Ascending</option>
+                    </select>
+                </div>
+    
+                <div class="flex flex-col flex-auto gap-2">
+                    <label>Filter:</label>
+                    <select id="filter" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="">None</option>
+                        <option value="airing">Airing</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="bypopularity">By Popularity</option>
+                        <option value="favorite">By Favorites</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <p class="mb-3">Genre</p>
+
+            <div class="flex flex-wrap gap-3 mb-8">
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-action" type="checkbox" name="genre" value="Action" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-action" class="w-full py-2 ms-2 text-sm font-medium">Action</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-adventure" type="checkbox" name="genre" value="Adventure" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-adventure" class="w-full py-2 ms-2 text-sm font-medium">Adventure</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-avant-garde" type="checkbox" name="genre" value="Avant Garde" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-avant-garde" class="w-full py-2 ms-2 text-sm font-medium">Avant Garde</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-award-winning" type="checkbox" name="genre" value="Award Winning" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-award-winning" class="w-full py-2 ms-2 text-sm font-medium">Award Winning</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-comedy" type="checkbox" name="genre" value="Comedy" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-comedy" class="w-full py-2 ms-2 text-sm font-medium">Comedy</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-drama" type="checkbox" name="genre" value="Drama" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-drama" class="w-full py-2 ms-2 text-sm font-medium">Drama</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-fantasy" type="checkbox" name="genre" value="Fantasy" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-fantasy" class="w-full py-2 ms-2 text-sm font-medium">Fantasy</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-horror" type="checkbox" name="genre" value="Horror" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-horror" class="w-full py-2 ms-2 text-sm font-medium">Horror</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-mystery" type="checkbox" name="genre" value="Mystery" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-mystery" class="w-full py-2 ms-2 text-sm font-medium">Mystery</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-romance" type="checkbox" name="genre" value="Romance" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-romance" class="w-full py-2 ms-2 text-sm font-medium">Romance</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-sci-fi" type="checkbox" name="genre" value="Sci-Fi" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-sci-fi" class="w-full py-2 ms-2 text-sm font-medium">Sci-Fi</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-slice-of-life" type="checkbox" name="genre" value="Slice of Life" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-slice-of-life" class="w-full py-2 ms-2 text-sm font-medium">Slice of Life</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-sports" type="checkbox" name="genre" value="Sports" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-sports" class="w-full py-2 ms-2 text-sm font-medium">Sports</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-supernatural" type="checkbox" name="genre" value="Supernatural" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-supernatural" class="w-full py-2 ms-2 text-sm font-medium">Supernatural</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-suspense" type="checkbox" name="genre" value="Suspense" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-suspense" class="w-full py-2 ms-2 text-sm font-medium">Suspense</label>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="">
+                    
+                    <div class="flex flex-wrap mb-4 mt-8">
+                        <button onclick="animeRate()" id="get_btn" class="text-[var(--color-primary)] bg-[var(--color-tertiary)] focus:ring-4 focus:ring-[var(--color-tertiary-500)] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">GET List</button>
+                        <button onclick="downloadTxtFile()" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-[var(--color-tertiary)] rounded-lg group bg-[var(--color-tertiary)] group-hover:[var(--color-tertiary)] hover:text-[var(--color-primary)] focus:ring-4 focus:outline-none focus:ring-[var(--color-tertiary-500)]">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-[var(--color-primary)] rounded-md group-hover:bg-transparent">
+                                Export TXT
+                            </span>
+                        </button>
+                        <button onclick="darkClass()" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                            dark
+                        </button>
+                    </div>
+                </div>
+                <button type="button" id="cancel_btn" class="mb-4 mt-8 text-[var(--color-text-2)] bg-[var(--color-bg)] border border-[var(--color-text-1)] focus:outline-none hover:bg-[var(--color-primary-500)] focus:ring-4 focus:ring-[var(--color-primary-color)] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition-colors duration-200 ease-in-out">cancel</button>
+            </div>
+        </div>
+
+            
+        <div id="loading">
+
+        </div>
+        <div id="anime-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4"></div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html> -->

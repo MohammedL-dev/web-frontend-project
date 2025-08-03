@@ -1,0 +1,62 @@
+:root {
+    /* Base colors */
+    --color-primary:      hsl(221, 50%, 90%);
+    --color-secondary:    hsl(221, 50%, 10%);
+    --color-tertiary:     hsl(281, 80%, 20%);
+    --color-accent:       hsl(161, 80%, 20%);
+    --color-text-1:       hsl(220, 13%, 91%);
+    --color-text-2:       hsl(217, 19%, 27%);
+    --color-bg:           hsl(210, 20%, 98%);
+    --color:              hsl(0, 0%, 10%);
+    --color-2:            hsl(0, 0%, 90%);
+
+    /* Lighter (500) and Darker (800) variants */
+    --color-primary-500:    hsl(221, 50%, 70%);   /* lighter */
+    --color-primary-800:    hsl(221, 50%, 30%);   /* darker */
+    --color-primary-color:  hsl(221, 50%, 95%);
+
+    --color-secondary-500:  hsl(221, 50%, 30%);
+    --color-secondary-800:  hsl(221, 50%, 5%);
+
+    --color-tertiary-500:   hsl(281, 80%, 40%);
+    --color-tertiary-800:   hsl(281, 80%, 10%);
+
+    --color-accent-500:     hsla(161, 80%, 20%, 0.6);
+    --color-accent-800:     hsl(161, 80%, 10%);
+}
+
+.dark {
+    /* Swap base for dark mode */
+    --color-primary:      hsl(221, 50%, 10%);
+    --color-secondary:    hsl(221, 50%, 90%);
+    --color-tertiary:     hsl(281, 80%, 80%);
+    --color-accent:       hsl(161, 80%, 80%);
+    --color-text-1:       hsl(217, 19%, 27%);
+    --color-text-2:       hsl(218, 11%, 65%);
+    --color-bg:           hsl(215, 28%, 17%);  
+    --color:              hsl(0, 0%, 90%);
+    --color-2:            hsl(0, 0%, 10%);
+
+    /* Dark-mode variants */
+    --color-primary-500:    hsl(221, 50%, 30%);
+    --color-primary-800:    hsl(221, 50%, 5%);
+    --color-primary-color:      hsl(221, 50%, 15%);
+
+    --color-secondary-500:  hsl(221, 50%, 70%);
+    --color-secondary-800:  hsl(221, 50%, 40%);
+
+    --color-tertiary-500:   hsl(281, 80%, 60%);
+    --color-tertiary-800:   hsl(281, 80%, 40%);
+
+    --color-accent-500:     hsla(161, 80%, 80%, 0.6);
+    --color-accent-800:     hsl(161, 80%, 60%);
+}
+
+/* * {
+    border: red 1px solid !important;
+} */
+/* 
+{
+    transition-property: color, background-color, border-color, fill, stroke;
+    transition-duration: 300ms;
+} */ 

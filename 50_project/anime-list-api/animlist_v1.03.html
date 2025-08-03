@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Anime-list</title>
+    <style>
+        :root {
+    /* Base colors */
+    --color-primary:      hsl(221, 50%, 90%);
+    --color-secondary:    hsl(221, 50%, 10%);
+    --color-tertiary:     hsl(281, 80%, 20%);
+    --color-accent:       hsl(161, 80%, 20%);
+    --color-text-1:       hsl(220, 13%, 91%);
+    --color-text-2:       hsl(217, 19%, 27%);
+    --color-bg:           hsl(210, 20%, 98%);
+    --color:              hsl(0, 0%, 10%);
+    --color-2:            hsl(0, 0%, 90%);
+
+    /* Lighter (500) and Darker (800) variants */
+    --color-primary-500:    hsl(221, 50%, 70%);   /* lighter */
+    --color-primary-800:    hsl(221, 50%, 30%);   /* darker */
+    --color-primary-color:  hsl(221, 50%, 95%);
+
+    --color-secondary-500:  hsl(221, 50%, 30%);
+    --color-secondary-800:  hsl(221, 50%, 5%);
+
+    --color-tertiary-500:   hsl(281, 80%, 40%);
+    --color-tertiary-800:   hsl(281, 80%, 10%);
+
+    --color-accent-500:     hsla(161, 80%, 20%, 0.6);
+    --color-accent-800:     hsl(161, 80%, 10%);
+}
+
+.dark {
+    /* Swap base for dark mode */
+    --color-primary:      hsl(221, 50%, 10%);
+    --color-secondary:    hsl(221, 50%, 90%);
+    --color-tertiary:     hsl(281, 80%, 80%);
+    --color-accent:       hsl(161, 80%, 80%);
+    --color-text-1:       hsl(217, 19%, 27%);
+    --color-text-2:       hsl(218, 11%, 65%);
+    --color-bg:           hsl(215, 28%, 17%);  
+    --color:              hsl(0, 0%, 90%);
+    --color-2:            hsl(0, 0%, 10%);
+
+    /* Dark-mode variants */
+    --color-primary-500:    hsl(221, 50%, 30%);
+    --color-primary-800:    hsl(221, 50%, 5%);
+    --color-primary-color:      hsl(221, 50%, 15%);
+
+    --color-secondary-500:  hsl(221, 50%, 70%);
+    --color-secondary-800:  hsl(221, 50%, 40%);
+
+    --color-tertiary-500:   hsl(281, 80%, 60%);
+    --color-tertiary-800:   hsl(281, 80%, 40%);
+
+    --color-accent-500:     hsla(161, 80%, 80%, 0.6);
+    --color-accent-800:     hsl(161, 80%, 60%);
+}
+
+/* * {
+    border: red 1px solid !important;
+} */
+/* 
+{
+    transition-property: color, background-color, border-color, fill, stroke;
+    transition-duration: 300ms;
+} */ 
+
+    </style>
+</head>
+<body class="bg-[var(--color-primary)] caret-[var(--color-tertiary)]">
+    <nav class="flex bg-gradient-to-r from-[var(--color-primary-color)] to-[var(--color-primary)] text-[var(--color-secondary)] flex-wrap items-center justify-between px-6 py-5 mb-6 shadow-lg backdrop-blur-sm transition-all duration-300">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-[var(--color-tertiary)] to-[var(--color-tertiary-500)] 
+                        rounded-xl flex items-center justify-center shadow-md transform transition-transform duration-300 hover:scale-110">
+                <svg class="w-6 h-6 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1 class="text-[var(--color-tertiary)] text-2xl font-bold tracking-wide bg-gradient-to-r from-[var(--color-tertiary)] to-[var(--color-tertiary-500)]  bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
+                Anime List
+            </h1>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <a href="#" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-[var(--color-tertiary-500)] text-[var(--color-primary)] font-medium hover:bg-[var(--color-tertiary-800)] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <i class="fas fa-share-alt"></i>
+                <span class="font-semibold">Share</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="flex flex-col justify-self-center mx-auto max-w-6xl text-[var(--color-secondary)]">
+        <section class="flex flex-col items-center text-start py-24 px-4 bg-[var(--color-primary)] text-[var(--color-secondary)]">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-center tracking-tight">
+                <i class="fas fa-search mr-3"></i>Discover Your Next <br> Favorite <span class="text-[var(--color-tertiary)]">Anime</span>
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl w-xl">
+                Search, filter, and explore the best anime tailored to your taste — fast and easy.
+            </p>
+        </section>
+        
+        <div class="bg-[var(--color-primary-color)] rounded-lg shadow-sm p-4">
+            <p class="mt-8 mb-3"><i class="fas fa-filter mr-2"></i>Filter</p>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="num" type="number" id="animes_num2" value="20">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="rate" type="number" id="rate">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="score" type="number" id="score">
+                <input class="flex-auto bg-[var(--color-primary)] border border-gray-300 text-[var(--color)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 shadow-sm" placeholder="number of episodes" type="number" id="ep_num">
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col flex-auto gap-2 ">
+                    <label><i class="fas fa-tv mr-2"></i>Type:</label>
+                    <select id="type" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="">Any Type</option>
+                        <option value="TV">TV</option>
+                        <option value="Movie">Movie</option>
+                        <option value="OVA">OVA</option>
+                        <option value="ONA">ONA</option>
+                        <option value="Special">Special</option>
+                        <option value="Music">Music</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col flex-auto gap-2">
+                    <label><i class="fas fa-sort mr-2"></i>Order by:</label>
+                    <select id="order_by" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="score">Score</option>
+                        <option value="popularity">Popularity</option>
+                        <option value="favorites">Favorites</option>
+                        <option value="rank">Rank</option>
+                        <option value="mal_id">Newest</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col flex-auto gap-2">
+                    <label><i class="fas fa-sort-amount-down mr-2"></i>Sort:</label>
+                    <select id="sort" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="desc">Descending</option>
+                        <option value="asc">Ascending</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col flex-auto gap-2">
+                    <label><i class="fas fa-funnel-dollar mr-2"></i>Filter:</label>
+                    <select id="filter" class="max-w-xs bg-[var(--color-bg)] border border-[var(--color-secondary-500)] text-[var(--color-secondary)] text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-tertiary)] focus:border-[var(--color-tertiary-500)] p-2.5 shadow-sm mb-8">
+                        <option value="">None</option>
+                        <option value="airing">Airing</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="bypopularity">By Popularity</option>
+                        <option value="favorite">By Favorites</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="mb-3"><i class="fas fa-tags mr-2"></i>Genre</p>
+
+            <div class="flex flex-wrap gap-3 mb-8">
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-action" type="checkbox" name="genre" value="Action" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-action" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-fist-raised mr-2"></i>Action</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-adventure" type="checkbox" name="genre" value="Adventure" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-adventure" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-mountain mr-2"></i>Adventure</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-avant-garde" type="checkbox" name="genre" value="Avant Garde" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-avant-garde" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-palette mr-2"></i>Avant Garde</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-award-winning" type="checkbox" name="genre" value="Award Winning" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-award-winning" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-trophy mr-2"></i>Award Winning</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-comedy" type="checkbox" name="genre" value="Comedy" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-comedy" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-laugh mr-2"></i>Comedy</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-drama" type="checkbox" name="genre" value="Drama" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-drama" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-theater-masks mr-2"></i>Drama</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-fantasy" type="checkbox" name="genre" value="Fantasy" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-fantasy" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-magic mr-2"></i>Fantasy</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-horror" type="checkbox" name="genre" value="Horror" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-horror" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-ghost mr-2"></i>Horror</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-mystery" type="checkbox" name="genre" value="Mystery" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-mystery" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-search mr-2"></i>Mystery</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-romance" type="checkbox" name="genre" value="Romance" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-romance" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-heart mr-2"></i>Romance</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-sci-fi" type="checkbox" name="genre" value="Sci-Fi" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-sci-fi" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-rocket mr-2"></i>Sci-Fi</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-slice-of-life" type="checkbox" name="genre" value="Slice of Life" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-slice-of-life" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-home mr-2"></i>Slice of Life</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-sports" type="checkbox" name="genre" value="Sports" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-sports" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-football-ball mr-2"></i>Sports</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-supernatural" type="checkbox" name="genre" value="Supernatural" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-supernatural" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-eye mr-2"></i>Supernatural</label>
+                </div>
+                <div class="flex items-center px-4 border border-[var(--color-secondary)] rounded-sm">
+                    <input id="genre-suspense" type="checkbox" name="genre" value="Suspense" class="w-4 h-4 accent-[var(--color-tertiary)] bg-gray-100 border-gray-300 rounded-sm focus:ring-[var(--color-tertiary-500)] focus:ring-2">
+                    <label for="genre-suspense" class="w-full py-2 ms-2 text-sm font-medium"><i class="fas fa-exclamation-triangle mr-2"></i>Suspense</label>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="">
+                    <div class="flex flex-wrap mb-4 mt-8">
+                        <button onclick="animeRate()" id="get_btn" class="text-[var(--color-primary)] bg-[var(--color-tertiary)] focus:ring-4 focus:ring-[var(--color-tertiary-500)] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
+                            <i class="fas fa-list mr-2"></i>GET List
+                        </button>
+                        <button onclick="downloadTxtFile()" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-[var(--color-tertiary)] rounded-lg group bg-[var(--color-tertiary)] group-hover:[var(--color-tertiary)] hover:text-[var(--color-primary)] focus:ring-4 focus:outline-none focus:ring-[var(--color-tertiary-500)]">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-[var(--color-primary)] rounded-md group-hover:bg-transparent">
+                                <i class="fas fa-download mr-2"></i>Export TXT
+                            </span>
+                        </button>
+                        <button onclick="darkClass()" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                            <i class="fas fa-moon mr-2"></i>dark
+                        </button>
+                    </div>
+                </div>
+                <button type="button" id="cancel_btn" class="mb-4 mt-8 text-[var(--color-text-2)] bg-[var(--color-bg)] border border-[var(--color-text-1)] focus:outline-none hover:bg-[var(--color-primary-500)] focus:ring-4 focus:ring-[var(--color-primary-color)] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition-colors duration-200 ease-in-out">
+                    <i class="fas fa-times mr-2"></i>cancel
+                </button>
+            </div>
+        </div>
+
+        <div id="loading"></div>
+        <div id="anime-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4"></div>
+    </div>
+
+    <script>
+const out = document.getElementById("output");
+const out2 = document.getElementById("output2");
+const list = document.getElementById("list");
+const progress = document.getElementById("progress");
+const container = document.getElementById("anime-cards");
+const loading = document.getElementById("loading");
+const get_btn = document.getElementById("get_btn");
+const cancel_btn = document.getElementById("cancel_btn");
+
+
+let a = "";
+
+function darkClass() {
+    document.documentElement.classList.toggle("dark");
+}
+
+function showLoading(stat, progress, count_anime , num2, animes_found) {
+    if (stat) {
+        loading.innerHTML = `
+        <div class="loading-container flex flex-col mt-8 py-4 px-6 text-sm font-medium rounded-xl border transition-all duration-300 ease-in-out
+                    text-[var(--color-text-2)] 
+                    bg-[var(--color-primary)] 
+                    border-[var(--color-primary-500)] 
+                    hover:bg-[var(--color-primary-500)] 
+                    hover:border-[var(--color-primary-800)]
+                    hover:shadow-lg
+                    transform hover:scale-[1.02]">
+            
+            <!-- Loading spinner and text -->
+            <div class="flex items-center mb-3">
+                <svg aria-hidden="true" role="status" class="inline w-5 h-5 me-3 animate-spin transition-transform duration-500" 
+                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" 
+                          fill="var(--color-primary-500)"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" 
+                          fill="var(--color-tertiary)"/>
+                </svg>
+                <span class="font-semibold">Loading animes...</span>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="flex justify-between text-xs mb-3 opacity-80">
+                <span>Processing: ${count_anime}</span>
+                <span>Found: ${animes_found}</span>
+            </div>
+            
+            <!-- Progress bar -->
+            <div class="w-full bg-[var(--color-primary-500)] rounded-full h-3 overflow-hidden shadow-inner">
+                <div class="align-middle text-center progress-bar bg-gradient-to-r from-[var(--color-tertiary)] to-[var(--color-tertiary-500)] h-3 rounded-full transition-all duration-500 ease-out shadow-sm" 
+                        style="width: ${progress}%">
+                            <div class="text-[var(--color-2)] text-center text-xs font-medium opacity-75">
+                                ${Math.round(progress)}%
+                            </div>
+                        </div>
+            </div>
+            
+        </div>
+        `
+    } else {
+        loading.innerHTML = ""
+    }
+}
+
+
+
+// Enhanced version with pulse animation for better UX
+function showLoadingEnhanced(stat, progress, count_anime, num2, animes_found) {
+    if (stat) {
+        loading.innerHTML = `
+        <div class="loading-container animate-pulse-subtle flex flex-col mt-6 py-5 px-7 text-sm font-medium rounded-2xl border-2 transition-all duration-500 ease-in-out
+                    text-[var(--color-text-2)] 
+                    bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-color)]
+                    border-[var(--color-primary-500)] 
+                    hover:from-[var(--color-primary-500)] 
+                    hover:to-[var(--color-primary)]
+                    hover:border-[var(--color-tertiary)]
+                    hover:shadow-2xl
+                    backdrop-blur-sm">
+            
+            <!-- Header with icon and title -->
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                    <div class="relative">
+                        <svg aria-hidden="true" role="status" class="w-6 h-6 me-3 animate-spin" 
+                            viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" stroke="var(--color-primary-500)" stroke-width="8" fill="none" opacity="0.3"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" 
+                                    fill="var(--color-tertiary)" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-base">Loading Animes</span>
+                </div>
+                <span class="text-xs px-3 py-1 rounded-full bg-[var(--color-tertiary)] text-[var(--color-primary)] font-semibold">
+                    ${Math.round(progress)}%
+                </span>
+            </div>
+            
+            <!-- Statistics grid -->
+            <div class="grid grid-cols-3 gap-4 mb-4 text-center">
+                <div class="bg-[var(--color-primary-color)] rounded-lg p-3 transition-all duration-300">
+                    <div class="text-lg font-bold text-[var(--color-tertiary)]">${count_anime}</div>
+                    <div class="text-xs opacity-70">Processing</div>
+                </div>
+                <div class="bg-[var(--color-primary-color)] rounded-lg p-3 transition-all duration-300">
+                    <div class="text-lg font-bold text-[var(--color-tertiary)]">${animes_found}</div>
+                    <div class="text-xs opacity-70">Found</div>
+                </div>
+                <div class="bg-[var(--color-primary-color)] rounded-lg p-3 transition-all duration-300">
+                    <div class="text-lg font-bold text-[var(--color-tertiary)]">${num2}</div>
+                    <div class="text-xs opacity-70">Total</div>
+                </div>
+            </div>
+            
+            <!-- Enhanced progress bar -->
+            <div class="relative w-full bg-[var(--color-primary-500)] rounded-full h-4 overflow-hidden shadow-inner">
+                <div class="progress-bar absolute top-0 left-0 h-full bg-gradient-to-r from-[var(--color-tertiary)] via-[var(--color-tertiary-500)] to-[var(--color-tertiary)] rounded-full transition-all duration-700 ease-out shadow-lg animate-shimmer" style="width: ${progress}%">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-slide"></div>
+            </div>
+        </div>
+        
+        <style>
+        .animate-pulse-subtle {
+            animation: pulse-subtle 2s infinite;
+        }
+        
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+        
+        .animate-shimmer {
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .animate-slide {
+            animation: slide 2s infinite;
+        }
+        
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        </style>
+        `
+    } else {
+        loading.innerHTML = ""
+    }
+}
+
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function msToTime(duration) {
+    let seconds = Math.floor(duration / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    
+    seconds = seconds % 60;
+    minutes = minutes % 60;
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function showProgress(n, t){
+    const total = 10;
+    const i = Math.round((n / t) * total);
+    const progress = '▇'.repeat(i) + '-'.repeat(total - i);
+    document.getElementById("progress").textContent = `Progress: [${progress}] ${i * 10}% \n${n}/${t}`;
+}
+
+cancel_btn.addEventListener("click" , () => {
+    shouldStop = true;
+    showLoading(false)
+});
+
+
+async function animeRate() {
+    const num2 = document.getElementById("animes_num2").value;
+    const rate = document.getElementById("rate").value;
+    const in_score = document.getElementById("score").value;
+    const ep_num = document.getElementById("ep_num").value;
+    const getChecked = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+    const genre = getChecked("genre");
+    const type = document.getElementById("type").value;
+
+    // New: Sorting/filter options
+    const order_by = document.getElementById("order_by")?.value || "score";
+    const sort = document.getElementById("sort")?.value || "desc";
+    const filter = document.getElementById("filter")?.value || "";
+
+    container.innerHTML = "";
+    let count_anime = 0;
+    let animes_found = 0;
+    let shouldStop = false;
+    let repeatanime = "";
+    const start = performance.now();
+    
+    
+    for (let i = 1; i <= 1157 && !shouldStop; i++) {
+        try {
+            const url = new URL(`https://api.jikan.moe/v4/top/anime`);
+            url.searchParams.set("page", i);
+            url.searchParams.set("sfw", "true");
+            
+            if (order_by) url.searchParams.set("order_by", order_by);
+            if (sort) url.searchParams.set("sort", sort);
+            if (type) url.searchParams.set("type", type);
+            if (filter) url.searchParams.set("filter", filter);
+
+            const response = await fetch(url.toString());
+            console.log(url.toString())
+            
+            if (response.status === 404) {
+                console.log(`⚠️ Page ${i} not found (404)`);
+                continue;
+            }
+
+            if (response.status === 429) {
+                console.log(`⚠️ Rate limit hit at page ${i}, retrying...`);
+                i--;
+                await sleep(500);
+                continue;
+            }
+
+            const data = await response.json();
+            const animes = data.data;
+            console.log(animes)
+            console.log(filter)
+
+            
+            for (const anime of animes) {
+                const title = anime.title;
+                const title_english = anime.title_english || "";
+                const episodes = anime.episodes;
+                const score = anime.score;
+                const rating = anime.rating;
+                const id = anime.mal_id;
+                const year = anime.year || 'N/A';
+                count_anime++;
+                let progressbar = (count_anime/num2) * 100;
+                //console.log(progressbar);
+                showLoadingEnhanced(true, progressbar, count_anime, num2, animes_found);
+                get_btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Loading...`;
+
+                //showProgress(count_anime, num2);
+
+                let b = [];
+
+                if (rate.trim() !== "") {
+                    try {
+                        const episodesResponse = await fetch(`https://api.jikan.moe/v4/anime/${id}/episodes`);
+                        if (episodesResponse.status === 404) {
+                            console.log(`⚠️ Episode data for anime ID ${id} not found (404)`);
+                            continue;
+                        }
+                        if (episodesResponse.status === 429) {
+                            console.log(`⚠️ Rate limit hit at episode check for anime ${id}, retrying...`);
+                            await sleep(1000);
+                            continue;
+                        }
+
+                        const episodesData = await episodesResponse.json();
+                        if (episodesData.data.length === 0) {
+                            console.log(`⚠️ Anime ${id} has no episode data`);
+                            continue;
+                        }
+
+                        for (const ep of episodesData.data) {
+                            b.push(ep.score !== null && Number(ep.score) >= Number(rate) ? 1 : 0);
+                        }
+                    } catch (epError) {
+                        console.log(`⚠️ Error fetching episodes for anime ID ${id}`, epError);
+                        continue;
+                    }
+                }
+
+                const allEpisodesGood = b.length === 0 || !b.includes(0);
+                const scoreOk = (score !== null && (in_score === "" || score >= Number(in_score))) || filter === "upcoming";
+                const ep_numOK = (episodes !== null && (ep_num === "" || episodes <= Number(ep_num))) || filter === "upcoming";
+                const genreOK = genre.length === 0 || anime.genres.some(g => genre.includes(g.name));
+                const typeOK = type === "" || anime.type === type;
+                const noRepetOK = repeatanime === "" || repeatanime !== title;
+                console.log(`${title} => score: ${scoreOk} (${score}), episodes: ${ep_numOK} (${episodes}), genres: ${genreOK}, type: ${typeOK} (${anime.type}), noRepeat: ${noRepetOK}, allEpisodesGood: ${allEpisodesGood}`);
+
+                if (allEpisodesGood && scoreOk && ep_numOK && genreOK && typeOK && noRepetOK) {
+                    animes_found++
+
+                    const card = `
+                        <div class="max-w-sm bg-[var(--color-primary-color)] border border-[var(--color-text-1)] rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col h-full">
+                            <div class="relative">
+                            <img class="w-full h-80 object-cover" src="${anime.images.jpg.large_image_url}" alt="${title}" />
+                            <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-white px-2 py-1 rounded-md text-xs font-medium">
+                                <i class="fas fa-calendar-alt mr-1"></i>
+                                ${year}
+                            </div>
+                            </div>
+
+                            <div class="p-5 flex flex-col flex-1">
+                            <div class="mb-3">
+                                <h5 class="text-xl font-bold text-[var(--color-secondary)] mb-1 line-clamp-2">${title}</h5>
+                                <p class="text-sm text-[var(--color-text-2)] line-clamp-2">${title_english}</p>
+                            </div>
+
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star mr-1"></i>
+                                <span class="font-semibold text-center">${anime.score || 'N/A'}</span>
+                                </div>
+                                <div class="flex items-center border border-[var(--color-text-1)] bg-[var(--color-bg)] text-blue-600 px-2 py-1 rounded-full text-xs">
+                                <i class="fas fa-tv mr-1"></i>
+                                <span class="font-medium">${anime.type || 'Unknown'}</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="flex flex-wrap gap-1">
+                                ${anime.genres ? anime.genres.slice(0, 3).map(
+                                        genre => `
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full border border-[var(--color-text-1)] text-xs font-medium bg-[var(--color-bg)] text-[var(--color-text-2)]">
+                                            <i class="fas fa-tag mr-1 text-xs"></i>
+                                            ${genre.name}
+                                        </span>`
+                                    ).join('')
+                                    : '<span class="text-xs text-gray-500">No genres available</span>'}
+                                </div>
+                            </div>
+
+                            <div class="mt-auto">
+                                <button onclick="window.open('${anime.url}', '_blank')"
+                                        class="w-full text-[var(--color-primary)] bg-[var(--color-tertiary)] focus:ring-4 focus:ring-[var(--color-tertiary-500)] text-sm px-5 py-2.5 focus:outline-none font-medium rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                View Details
+                                </button>
+                            </div>
+                            </div>
+                        </div>`;
+
+                    container.innerHTML += card;
+                    a += `Anime: ${title} | English: ${title_english} | ID: ${id} | Score: ${score}\n`;
+                    console.log("✅ Found one match:", title);
+                }
+
+                if (count_anime >= num2) {
+                    shouldStop = true;
+                    break;
+                }
+                
+                repeatanime = title;
+
+            }
+
+
+        } catch (error) {
+            console.log(`⚠️ Error fetching page ${i}:`, error);
+        }
+    }
+
+    const end = performance.now();
+    a += `This took ${msToTime((end - start))}`;
+    console.log(`This took ${msToTime((end - start))}`);
+    // document.getElementById("progress").textContent = "";
+    get_btn.innerHTML = `<i class="fas fa-list mr-2"></i>GET List`;
+    showLoading(false)
+    if (container.innerHTML === "") {
+        container.innerHTML = `
+        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300">
+            <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            No anime matched the criteria</span>`
+    }
+    // out2.textContent = a || "No anime matched the criteria.";
+}
+
+
+
+
+
+function downloadTxtFile() {
+    if (!a.trim()) {
+        alert("No anime data to export.");
+        return;
+    }
+    const blob = new Blob([a], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "anime_list.txt"; // filename
+    document.body.appendChild(link);
+    link.click();
+
+    // cleanup
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+
+    </script>
+</body>
+</html>
